@@ -28,11 +28,13 @@ const registerController = async (req, res) => {
       await newUser.save();
     }
 
-    ///////////aur you can do this////////
-    //     if (req.body.type === "Owner") {
-    //       newUser.set("granted", "pending", { strict: false });
-    //     }
-    //////////////////// for this, then you need to remove strict keyword from schema//////////////////////
+
+
+    /////////aur you can do this////////
+        if (req.body.type === "Owner") {
+          newUser.set("granted", "pending", { strict: false });
+        }
+    ////////////////// for this, then you need to remove strict keyword from schema//////////////////////
 
     return res.status(201).send({ message: "Register Success", success: true });
   } catch (error) {
@@ -42,6 +44,39 @@ const registerController = async (req, res) => {
       .send({ success: false, message: `${error.message}` });
   }
 };
+
+
+//MOCK VERSION-
+// const registerController = async (req, res) => {
+//   try {
+//     console.log("Mock Register Request:", req.body);
+
+//     // Simulate checking existing user
+//     if (req.body.email === "already@exists.com") {
+//       return res.status(200).send({
+//         success: false,
+//         message: "User already exists (mocked)",
+//       });
+//     }
+
+//     // Simulate different user types
+//     if (req.body.type === "Owner") {
+//       console.log("Owner will be ungranted for now (mocked).");
+//     }
+
+//     return res.status(201).send({
+//       success: true,
+//       message: "User registered successfully (mocked)",
+//     });
+//   } catch (error) {
+//     console.log("Mock Registration Error:", error);
+//     return res.status(500).send({
+//       success: false,
+//       message: "Registration failed (mocked)",
+//     });
+//   }
+// };
+
 
 ////for the login
 const loginController = async (req, res) => {
@@ -66,7 +101,13 @@ const loginController = async (req, res) => {
       message: "Login success successfully",
       success: true,
       token,
-      user: user,
+    user: {
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+     type: user.type.charAt(0).toUpperCase() + user.type.slice(1), 
+      // user: user,
+      }
     });
   } catch (error) {
     console.log(error);
@@ -75,6 +116,29 @@ const loginController = async (req, res) => {
       .send({ success: false, message: `${error.message}` });
   }
 };
+
+//MOCK LOGIN-
+// const loginController = async (req, res) => {
+//   try {
+//     // Mock login: Always success for testing
+//     const mockToken = "mockauthtoken123";
+//     const mockUser = {
+//       name: req.body.email.split('@')[0],
+//       email: req.body.email,
+//       type: "User",
+//     };
+//     res.status(200).send({
+//       success: true,
+//       message: "Login successful (mock)",
+//       token: mockToken,
+//       user: mockUser
+//     });
+//   } catch (error) {
+//     res.status(500).send({ success: false, message: "Mock login failed" });
+//   }
+// };
+
+
 
 /////forgotting password
 const forgotPasswordController = async (req, res) => {

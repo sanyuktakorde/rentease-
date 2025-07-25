@@ -39,6 +39,8 @@ const Login = () => {
 
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user));
+            // localStorage.setItem("user", JSON.stringify({ ...res.data.user, type: res.data.type }));
+
             const isLoggedIn = JSON.parse(localStorage.getItem("user"));
 
             switch (isLoggedIn.type) {

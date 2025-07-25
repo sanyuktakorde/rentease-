@@ -34,6 +34,7 @@ const Register = () => {
     else {
       axios.post('http://localhost:8001/api/user/register', data)
         .then((response) => {
+          console.log("Register Response:", response.data);
           if (response.data.success) {
             message.success(response.data.message);
             navigate('/login')
@@ -44,6 +45,7 @@ const Register = () => {
         })
         .catch((error) => {
           console.log("Error", error);
+          message.error("Registration failed. Try again.");
         });
     }
   };

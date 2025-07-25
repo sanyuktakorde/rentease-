@@ -15,3 +15,9 @@ const connectionOfDb = () => {
 };
 
 module.exports = connectionOfDb;
+
+// const connectionOfDb = () => {
+//   console.log("MongoDB connection skipped for now.");
+// };
+
+// module.exports = connectionOfDb;

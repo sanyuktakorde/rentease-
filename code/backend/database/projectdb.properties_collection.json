@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "687d125790406ae2e2eec4a9"
+  },
+  "property_name": "property_1",
+  "location": "address_1",
+  "property_type": "type",
+  "property_value": 0
+},
+{
+  "_id": {
+    "$oid": "687d125790406ae2e2eec4aa"
+  },
+  "property_name": "property_2",
+  "location": "address_2",
+  "property_type": "type",
+  "property_value": 0
+},
+{
+  "_id": {
+    "$oid": "687d125790406ae2e2eec4ab"
+  },
+  "property_name": "property_3",
+  "location": "address_3",
+  "property_type": "type",
+  "property_value": 0
+},
+{
+  "_id": {
+    "$oid": "687d125790406ae2e2eec4ac"
+  },
+  "property_name": "property_4",
+  "location": "address_4",
+  "property_type": "type",
+  "property_value": 0
+}]
