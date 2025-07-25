@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import { Container, Nav } from 'react-bootstrap';
@@ -13,13 +13,13 @@ import axios from 'axios';
 import { message } from 'antd';
 
 const Login = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
     type: ""
-  });
+  })
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -59,9 +59,9 @@ const Login = () => {
                 navigate("/login");
                 break;
             }
-            setTimeout(() => {
-              window.location.reload();
-            }, 1000);
+            setTimeout(()=>{
+              window.location.reload()
+            },1000)
           } else {
             message.error(res.data.message);
           }
@@ -77,40 +77,46 @@ const Login = () => {
 
   return (
     <>
-      {/* NAVBAR */}
-      <Navbar expand="lg" style={{ backgroundColor: '#87CEFA' }}>
+      <Navbar expand="lg" className="bg-body-tertiary">
         <Container fluid>
-          <Navbar.Brand style={{ fontWeight: 'bold', color: '#fff' }}>
-            <h2>RentEase</h2>
-          </Navbar.Brand>
+          <Navbar.Brand><h2>RentEase</h2></Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            <Nav className="ms-auto">
-              <Link to={'/'} style={{ color: '#fff', margin: '0 1rem', textDecoration: 'none' }}>Home</Link>
-              <Link to={'/login'} style={{ color: '#fff', margin: '0 1rem', textDecoration: 'none' }}>Login</Link>
-              <Link to={'/register'} style={{ color: '#fff', margin: '0 1rem', textDecoration: 'none' }}>Register</Link>
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: '100px' }}
+              navbarScroll
+            >
             </Nav>
+            <Nav>
+              <Link to={'/'}>Home</Link>
+              <Link to={'/login'}>Login</Link>
+              <Link to={'/register'}>Register</Link>
+            </Nav>
+
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
-      {/* FORM CONTAINER */}
-      <Container component="main" maxWidth="xs" style={{ backgroundColor: '#f0faff', borderRadius: '12px', padding: '2rem', marginTop: '3rem' }}>
+
+      <Container component="main" >
         <Box
           sx={{
+            marginTop: 8,
+            marginBottom: 4,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
-          <Avatar sx={{ bgcolor: '#00BFFF' }}>
+          <Avatar sx={{ bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5" sx={{ color: '#00BFFF', fontWeight: 'bold', marginTop: 1 }}>
+          <Typography component="h1" variant="h5">
             Sign In
           </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate>
 
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               fullWidth
@@ -133,33 +139,24 @@ const Login = () => {
               id="password"
               autoComplete="current-password"
             />
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{
-                mt: 3,
-                backgroundColor: '#00BFFF',
-                '&:hover': {
-                  backgroundColor: '#0099cc'
-                }
-              }}
-            >
-              Sign In
-            </Button>
-
-            <Grid container spacing={2} sx={{ mt: 2 }}>
-              <Grid item xs={12}>
-                Forgot password?
-                <Link to={'/forgotpassword'} style={{ color: '#00BFFF', marginLeft: '5px' }}>
-                  Click here
+            <Box mt={2}>
+              <Button
+                type="submit"
+                variant="contained"
+                style={{ width: '200px' }}
+              >
+                Sign Up
+              </Button>
+            </Box>
+            <Grid container>
+              <Grid item>forgot password?
+                <Link style={{ color: "red" }} to={'/forgotpassword'} variant="body2">
+                  {" Click here"}
                 </Link>
               </Grid>
-              <Grid item xs={12}>
-                Don't have an account?
-                <Link to={'/register'} style={{ color: '#00BFFF', marginLeft: '5px' }}>
-                  Sign Up
+              <Grid item>Have an account?
+                <Link style={{ color: "blue" }} to={'/register'} variant="body2">
+                  {" Sign Up"}
                 </Link>
               </Grid>
             </Grid>
@@ -167,7 +164,7 @@ const Login = () => {
         </Box>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
