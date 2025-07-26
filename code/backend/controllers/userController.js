@@ -66,7 +66,14 @@ const loginController = async (req, res) => {
       message: "Login success successfully",
       success: true,
       token,
-      user: user,
+      // user: user,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        type: user.type.charAt(0).toUpperCase() + user.type.slice(1),
+
+      }
     });
   } catch (error) {
     console.log(error);
@@ -159,7 +166,7 @@ const bookingHandleController = async (req, res) => {
     const booking = new bookingSchema({
       propertyId: propertyid,
       userID: userId,
-      ownerID: ownerId, 
+      ownerID: ownerId,
       userName: userDetails.fullName,
       phone: userDetails.phone,
       bookingStatus: status,
